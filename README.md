@@ -117,16 +117,17 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 
 ### 3. Supabase 마이그레이션
 
-Supabase Dashboard → SQL Editor에서 실행:
+Supabase Dashboard → SQL Editor에서 **순서대로** 실행:
 
-1. **`supabase/migrations/001_create_profiles.sql`**
-   - 프로필 테이블 생성
-   - 자동 프로필 생성 트리거
+1. **`001_create_profiles.sql`** - 프로필 테이블 & 트리거
+2. **`002_stores_security.sql`** - 스토어 보안 정책 (RLS)
+3. **`003_live_sessions.sql`** - 세션 & 주문 테이블
+4. **`004_add_buyer_nickname.sql`** - 닉네임 필드 추가
+5. **`005_create_storage_bucket.sql`** ⚠️ **필수!** - 이미지 저장 버킷
+6. **`006_orders_rls_policies.sql`** ⚠️ **필수!** - 주문 RLS 정책 (익명 주문 허용)
+7. **`007_fix_order_no_trigger.sql`** - 주문번호 트리거 수정
 
-2. **`supabase/migrations/002_stores_security.sql`** ⚠️ 필수!
-   - 스토어 보안 정책 (RLS)
-   - 주문 보안 정책
-   - 데이터 격리 보장
+> **중요**: 5, 6, 7번을 실행하지 않으면 이미지 업로드 및 주문 생성이 안 됩니다!
 
 ### 4. 개발 서버 실행
 
@@ -240,10 +241,13 @@ sellbox/
 │       └── database.ts              # 타입 정의
 ├── supabase/
 │   └── migrations/
-│       ├── 001_create_profiles.sql      # 프로필 테이블
-│       ├── 002_stores_security.sql      # 스토어 보안
-│       ├── 003_live_sessions.sql        # 🆕 세션 & 주문 테이블
-│       └── 004_add_buyer_nickname.sql   # 🆕 닉네임 필드
+│       ├── 001_create_profiles.sql          # 프로필 테이블
+│       ├── 002_stores_security.sql          # 스토어 보안
+│       ├── 003_live_sessions.sql            # 🆕 세션 & 주문 테이블
+│       ├── 004_add_buyer_nickname.sql       # 🆕 닉네임 필드
+│       ├── 005_create_storage_bucket.sql    # 🆕 이미지 저장 버킷 ⚠️
+│       ├── 006_orders_rls_policies.sql      # 🆕 주문 RLS 정책
+│       └── 007_fix_order_no_trigger.sql     # 🆕 주문번호 트리거 수정
 ├── public/
 │   ├── sellbox-logo.svg             # 메인 로고
 │   └── favicon.svg                  # 파비콘
@@ -594,19 +598,65 @@ npm run dev
 
 ---
 
-## 🐛 알려진 이슈
+## 🐛 트러블슈팅
 
-현재 알려진 이슈가 없습니다. 
+### 문제 1: "Bucket not found" 오류
 
-이슈 발견 시 [GitHub Issues](https://github.com/yourusername/sellbox/issues)에 등록해주세요.
+**증상**: 주문 시 이미지 업로드 실패
+
+**원인**: Supabase Storage 버킷 미생성
+
+**해결**:
+```sql
+-- 005_create_storage_bucket.sql 실행
+-- 또는 Dashboard에서 수동 생성
+-- Storage → Create bucket → order-images (Public ✅)
+```
+
+### 문제 2: "주문 생성 실패" 오류
+
+**증상**: 이미지는 업로드되지만 주문 생성 안 됨
+
+**원인**: Orders 테이블 RLS 정책 미설정
+
+**해결**:
+```sql
+-- 006_orders_rls_policies.sql 실행
+-- "Anyone can create orders" 정책 필요
+```
+
+### 문제 3: "column 'buyer_nickname' does not exist"
+
+**원인**: 004 마이그레이션 미실행
+
+**해결**:
+```sql
+-- 004_add_buyer_nickname.sql 실행
+```
+
+### 문제 4: "column reference 'order_no' is ambiguous"
+
+**원인**: 주문번호 트리거 함수 오류
+
+**해결**:
+```sql
+-- 007_fix_order_no_trigger.sql 실행
+```
+
+---
+
+## 🆘 도움이 필요하신가요?
+
+- 📖 [SETUP_INSTRUCTIONS.md](./SETUP_INSTRUCTIONS.md) - 상세 설치 가이드
+- 🐛 이슈 발견 시 [GitHub Issues](https://github.com/ysis0202/sellbox/issues)에 등록
 
 ---
 
 ## 📚 문서
 
-- [SETUP_GUIDE.md](./SETUP_GUIDE.md) - 설치 및 설정 가이드
-- [SECURITY_GUIDE.md](./SECURITY_GUIDE.md) - 보안 및 데이터 격리 가이드
-- [supabase/README.md](./supabase/README.md) - 데이터베이스 마이그레이션 가이드
+- [SETUP_INSTRUCTIONS.md](./SETUP_INSTRUCTIONS.md) - 설치 및 설정 가이드 (완성) ✅
+- [SECURITY_GUIDE.md](./SECURITY_GUIDE.md) - 보안 및 데이터 격리 가이드 (예정)
+- [supabase/README.md](./supabase/README.md) - 데이터베이스 마이그레이션 가이드 (예정)
 
 ---
 
