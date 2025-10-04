@@ -91,9 +91,9 @@ export default function DashboardPage() {
   ];
 
   const quickActions = [
-    { label: "상품 등록", icon: Plus, path: "/products/new", color: "bg-gradient-to-br from-pink-500 to-rose-500" },
-    { label: "주문 확인", icon: ShoppingBag, path: "/orders", color: "bg-gradient-to-br from-purple-500 to-violet-500" },
-    { label: "고객 관리", icon: Users, path: "/customers", color: "bg-gradient-to-br from-blue-500 to-cyan-500" },
+    { label: "새 세션", icon: Plus, path: "/sessions/new", color: "bg-gradient-to-br from-pink-500 to-rose-500" },
+    { label: "세션 관리", icon: StoreIcon, path: "/sessions", color: "bg-gradient-to-br from-purple-500 to-violet-500" },
+    { label: "주문 확인", icon: ShoppingBag, path: "/orders", color: "bg-gradient-to-br from-blue-500 to-cyan-500" },
   ];
 
   return (

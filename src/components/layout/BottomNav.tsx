@@ -2,11 +2,11 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, Package, Calendar, Bell, User } from "lucide-react";
+import { Home, Radio, Calendar, Bell, User } from "lucide-react";
 
 const navItems = [
   { id: "home", label: "홈", icon: Home, path: "/dashboard" },
-  { id: "products", label: "상품", icon: Package, path: "/products" },
+  { id: "sessions", label: "세션", icon: Radio, path: "/sessions" },
   { id: "orders", label: "주문", icon: Calendar, path: "/orders" },
   { id: "notifications", label: "알림", icon: Bell, path: "/notifications" },
   { id: "profile", label: "프로필", icon: User, path: "/profile" },
