@@ -1,0 +1,99 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 원형 그라디언트 -->
+  <defs>
+    <!-- 메인 그라디언트 (핑크-퍼플-블루) -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 밝은 그라디언트 -->
+    <linearGradient id="lightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDF2F8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FAF5FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EFF6FF;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 빛나는 효과 -->
+    <radialGradient id="glowGradient" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FBBF24;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- 배경 원 -->
+  <circle cx="60" cy="60" r="58" fill="url(#lightGradient)" opacity="0.5"/>
+  
+  <!-- 쇼핑 박스 베이스 -->
+  <g transform="translate(60, 60)">
+    <!-- 박스 뒷면 (입체감) -->
+    <path d="M -20 -5 L -20 20 L 20 20 L 20 -5 L 0 -15 Z" 
+          fill="url(#mainGradient)" 
+          opacity="0.6"/>
+    
+    <!-- 박스 메인 -->
+    <rect x="-22" y="-15" width="44" height="35" rx="4" 
+          fill="url(#mainGradient)"/>
+    
+    <!-- 박스 하이라이트 -->
+    <rect x="-20" y="-13" width="40" height="3" rx="1.5" 
+          fill="white" 
+          opacity="0.4"/>
+    
+    <!-- 박스 뚜껑 -->
+    <path d="M -25 -15 L -22 -22 L 22 -22 L 25 -15 Z" 
+          fill="url(#mainGradient)" 
+          filter="brightness(1.2)"/>
+    
+    <!-- 리본 - 가로 -->
+    <rect x="-2" y="-22" width="4" height="44" rx="2" 
+          fill="#F59E0B" 
+          opacity="0.9"/>
+    
+    <!-- 리본 매듭 -->
+    <circle cx="0" cy="-22" r="5" 
+            fill="#FBBF24"/>
+    <circle cx="0" cy="-22" r="3" 
+            fill="#FDE68A"/>
+    
+    <!-- 하트 장식 (왼쪽) -->
+    <g transform="translate(-15, 5) scale(0.25)">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" 
+            fill="#FCA5A5" 
+            opacity="0.8"/>
+    </g>
+    
+    <!-- 하트 장식 (오른쪽) -->
+    <g transform="translate(15, 0) scale(0.2)">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" 
+            fill="#E879F9" 
+            opacity="0.7"/>
+    </g>
+    
+    <!-- 반짝임 (왼쪽 위) -->
+    <g transform="translate(-18, -25)">
+      <circle cx="0" cy="0" r="2" fill="#FEF08A"/>
+      <line x1="-3" y1="0" x2="3" y2="0" stroke="#FEF08A" stroke-width="1" opacity="0.8"/>
+      <line x1="0" y1="-3" x2="0" y2="3" stroke="#FEF08A" stroke-width="1" opacity="0.8"/>
+    </g>
+    
+    <!-- 반짝임 (오른쪽 위) -->
+    <g transform="translate(20, -18)">
+      <circle cx="0" cy="0" r="1.5" fill="#BFDBFE"/>
+      <line x1="-2.5" y1="0" x2="2.5" y2="0" stroke="#BFDBFE" stroke-width="0.8" opacity="0.8"/>
+      <line x1="0" y1="-2.5" x2="0" y2="2.5" stroke="#BFDBFE" stroke-width="0.8" opacity="0.8"/>
+    </g>
+    
+    <!-- 반짝임 (오른쪽 아래) -->
+    <g transform="translate(22, 15)">
+      <circle cx="0" cy="0" r="1" fill="#FDE68A"/>
+      <line x1="-2" y1="0" x2="2" y2="0" stroke="#FDE68A" stroke-width="0.6" opacity="0.8"/>
+      <line x1="0" y1="-2" x2="0" y2="2" stroke="#FDE68A" stroke-width="0.6" opacity="0.8"/>
+    </g>
+  </g>
+  
+  <!-- 글로우 효과 (선택적) -->
+  <circle cx="60" cy="38" r="8" fill="url(#glowGradient)" opacity="0.3"/>
+</svg>
+

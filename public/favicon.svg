@@ -1,0 +1,23 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="faviconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 배경 -->
+  <rect width="32" height="32" rx="6" fill="url(#faviconGradient)"/>
+  
+  <!-- 간단한 박스 아이콘 -->
+  <g transform="translate(16, 16)">
+    <!-- 박스 -->
+    <rect x="-8" y="-6" width="16" height="12" rx="2" fill="white" opacity="0.9"/>
+    <!-- 리본 -->
+    <rect x="-1" y="-6" width="2" height="12" fill="#FBBF24"/>
+    <!-- 매듭 -->
+    <circle cx="0" cy="-6" r="2" fill="#FEF08A"/>
+  </g>
+</svg>
+
